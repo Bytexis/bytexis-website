@@ -28,7 +28,7 @@ export const projects: Project[] = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS", "Vite"],
         results:
             "Streamlined B2B lead generation and improved brand trust through a professional, lightning-fast digital storefront.",
-        imageUrl: "`${import.meta.env.BASE_URL}assets/projects/sge.webp`",
+        imageUrl: `${import.meta.env.BASE_URL}assets/projects/sge.webp`,
     },
     {
         id: 2,
@@ -45,7 +45,7 @@ export const projects: Project[] = [
         techStack: ["Python 3", "Tkinter", "SQLite", "ESC/POS Printing"],
         results:
             "Improved operational efficiency, reduced billing errors, and provided clear daily sales analytics for the shop management.",
-        imageUrl: "`${import.meta.env.BASE_URL}assets/projects/CFN.webp`",
+        imageUrl: `${import.meta.env.BASE_URL}assets/projects/CFN.webp`,
     },
     {
         id: 3,
@@ -62,7 +62,7 @@ export const projects: Project[] = [
         techStack: ["React", "Vite", "Tailwind CSS", "Framer Motion", "Wouter"],
         results:
             "Delivered an instant-load user experience with a visually polished UI that effectively communicates the brand's wellness values.",
-        imageUrl: "`${import.meta.env.BASE_URL}assets/projects/Green_pantry.webp`",
+        imageUrl: `${import.meta.env.BASE_URL}assets/projects/Green_pantry.webp`,
     },
 ];
 
