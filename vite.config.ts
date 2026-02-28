@@ -8,7 +8,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@assets": path.resolve(import.meta.dirname, "client", "attached_assets"),
     },
   },
   root: path.resolve(import.meta.dirname, "client"),

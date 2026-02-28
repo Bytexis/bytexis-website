@@ -32,9 +32,6 @@
     "paths": {
       "@/*": [
         "./client/src/*"
-      ],
-      "@assets/*": [
-        "./client/attached_assets/*"
       ]
     }
   }

@@ -38,7 +38,7 @@ Bytexis/
 │   │   ├── data/       # Static data
 │   │   └── lib/        # Utilities
 │   ├── public/         # Static assets (served from root)
-│   ├── attached_assets/# Project images and logos
+│   ├── public/         # Static assets (logo + project images)
 │   └── index.html      # Entry point
 ├── dist/               # Production build (generated)
 ├── .github/            # GitHub configuration
@@ -107,7 +107,7 @@ npm run build
 
 ## 🔗 Asset Management
 
-- **Logo & Images**: Stored in `client/attached_assets/`
+- **Logo & Images**: Stored in `client/public/`
 - **Public Assets**: Stored in `client/public/` (served from root)
 - **Project Images**: Automatically optimized and included in build
 
