@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { useTheme } from "@/hooks/use-theme";
 import { Moon, Sun, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -9,6 +9,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const { theme, setTheme } = useTheme();
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    if (theme === "system") {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      const updateTheme = () => setResolvedTheme(mediaQuery.matches ? "dark" : "light");
+      updateTheme();
+      mediaQuery.addEventListener("change", updateTheme);
+      return () => mediaQuery.removeEventListener("change", updateTheme);
+    }
+
+    setResolvedTheme(theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(resolvedTheme === "dark" ? "light" : "dark");
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -54,11 +69,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
             ))}
 
             <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={toggleTheme}
               className="p-2.5 rounded-full bg-secondary/50 hover:bg-secondary text-secondary-foreground transition-colors"
               aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
           </nav>
 
@@ -96,10 +111,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <div className="py-4 flex items-center justify-between border-b border-border/50">
                 <span className="text-xl font-display font-semibold text-muted-foreground">Theme</span>
                 <button
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  onClick={toggleTheme}
                   className="p-3 rounded-full bg-secondary text-secondary-foreground"
                 >
-                  {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
+                  {resolvedTheme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
                 </button>
               </div>
             </nav>
