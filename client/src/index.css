@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', sans-serif;
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+
+    /* Warm light theme */
+    --background: 30 20% 98%;
+    --foreground: 215 35% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 35% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 35% 10%;
+
+    --primary: 215 35% 10%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 30% 95%;
+    --secondary-foreground: 215 35% 10%;
+
+    --muted: 210 30% 95%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 30% 95%;
+    --accent-foreground: 215 35% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 88%;
+    --input: 214 32% 88%;
+    --ring: 215 35% 10%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Deep charcoal dark theme — #0f172a style */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 40% 9%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 40% 9%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 210 40% 96%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 217 32% 14%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 217 32% 14%;
+    --muted-foreground: 215 20% 62%;
+
+    --accent: 217 32% 14%;
+    --accent-foreground: 210 40% 96%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 30% 16%;
+    --input: 217 30% 16%;
+    --ring: 213 27% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    @apply tracking-tight;
+    line-height: 1.15;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/60;
+  }
+
+  .glass-panel {
+    @apply bg-background/80 backdrop-blur-md border border-border/50 shadow-sm;
+  }
+}
