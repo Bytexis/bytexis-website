@@ -69,13 +69,13 @@ const fadeUp = {
     visible: (i = 0) => ({
         opacity: 1,
         y: 0,
-        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.06 },
+        transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94], delay: i * 0.05 },
     }),
 };
 
 const stagger = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
 };
 
 export default function Process() {
@@ -86,7 +86,8 @@ export default function Process() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
-                        animate="visible"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-50px" }}
                         variants={stagger}
                         className="max-w-3xl"
                     >
@@ -165,7 +166,7 @@ export default function Process() {
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true }}
+                        viewport={{ once: true, margin: "-50px" }}
                         variants={stagger}
                     >
                         <div className="text-center mb-16">
@@ -216,7 +217,13 @@ export default function Process() {
 
             {/* Simple CTA */}
             <section className="py-20">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.4 }}
+                    className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+                >
                     <h2 className="text-2xl font-display font-bold mb-4">
                         Ready to start your project?
                     </h2>
@@ -229,7 +236,7 @@ export default function Process() {
                             <ArrowRight className="w-4 h-4" />
                         </Button>
                     </Link>
-                </div>
+                </motion.div>
             </section>
         </div>
     );

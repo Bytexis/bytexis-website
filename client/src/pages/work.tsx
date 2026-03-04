@@ -8,17 +8,17 @@ import { Button } from "@/components/ui/button";
 const projects = getProjects();
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.08 },
+    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94], delay: i * 0.06 },
   }),
 };
 
 const stagger = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
 };
 
 /* ItemList schema for SEO */
@@ -54,7 +54,8 @@ export default function Work() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
             variants={stagger}
             className="max-w-3xl"
           >
@@ -87,7 +88,8 @@ export default function Work() {
       <section className="pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
           variants={stagger}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
@@ -106,7 +108,7 @@ export default function Work() {
                     <img
                       src={project.imageUrl}
                       alt={project.title}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
                   </div>

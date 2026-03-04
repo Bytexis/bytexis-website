@@ -85,6 +85,8 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
@@ -92,6 +94,13 @@
     font-family: var(--font-sans);
     line-height: 1.7;
     letter-spacing: -0.01em;
+    /* Performance optimizations */
+    text-rendering: optimizeLegibility;
+  }
+
+  /* GPU acceleration for animated elements */
+  [data-animate] {
+    will-change: transform, opacity;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -225,6 +234,33 @@
   .tabular-nums {
     font-variant-numeric: tabular-nums;
   }
+}
+
+/* Scroll blur overlay - creates blur effect at top when scrolling */
+.scroll-blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  pointer-events: none;
+  z-index: 40;
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--background) / 0.9) 0%,
+    hsl(var(--background) / 0.6) 40%,
+    transparent 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-blur-overlay.visible {
+  opacity: 1;
 }
 
 /* Custom scrollbar */

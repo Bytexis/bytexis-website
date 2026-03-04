@@ -5,17 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Send, CheckCircle2, Mail, Linkedin, MapPin, Phone, Instagram, Github } from "lucide-react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 },
+    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94], delay: i * 0.06 },
   }),
 };
 
 const stagger = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
 };
 
 export default function Contact() {
@@ -61,7 +61,8 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
             variants={stagger}
             className="max-w-3xl"
           >
@@ -95,8 +96,9 @@ export default function Contact() {
           {/* Left Column: Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4 }}
             className="lg:col-span-5 flex flex-col"
           >
             <div className="space-y-4 flex-1 flex flex-col">
@@ -127,9 +129,15 @@ export default function Contact() {
                     <h3 className="font-semibold mb-1">Phone</h3>
                     <a 
                       href="tel:+919106117060" 
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors block"
                     >
                       +91 91061 17060
+                    </a>
+                    <a 
+                      href="tel:+916356165015" 
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors block"
+                    >
+                      +91 63561 65015
                     </a>
                   </div>
                 </div>
@@ -212,8 +220,9 @@ export default function Contact() {
           {/* Right Column: Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: 0.1 }}
             className="lg:col-span-7"
           >
             <div className="p-6 md:p-8 rounded-xl border border-border">

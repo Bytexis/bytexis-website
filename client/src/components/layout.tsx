@@ -41,19 +41,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      {/* Scroll blur overlay */}
+      <div className={cn("scroll-blur-overlay", scrolled && "visible")} />
+      
       {/* Header */}
       <header 
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "bg-background/70 backdrop-blur-md border-b",
           scrolled 
-            ? "glass-panel shadow-sm" 
-            : "bg-transparent"
+            ? "border-border/50 shadow-sm" 
+            : "border-transparent"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
             <img
-              src={`${import.meta.env.BASE_URL}assets/logo.jpeg`}
+              src={`${import.meta.env.BASE_URL}assets/Bytexis-logo.png`}
               alt="Bytexis Logo"
               className="w-10 h-10 rounded-xl shadow-sm group-hover:shadow-md transition-all duration-300"
             />
@@ -66,10 +70,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                  "px-4 py-2 text-sm transition-all duration-200 border-b-2",
                   location === link.href 
-                    ? "text-foreground bg-secondary" 
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                    ? "text-foreground font-bold border-foreground" 
+                    : "text-muted-foreground font-medium border-transparent hover:text-foreground"
                 )}
               >
                 {link.label}
@@ -145,7 +149,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="lg:col-span-1 space-y-4">
               <Link href="/" className="flex items-center gap-2.5">
                 <img
-                  src={`${import.meta.env.BASE_URL}assets/logo.jpeg`}
+                  src={`${import.meta.env.BASE_URL}assets/Bytexis-logo.png`}
                   alt="Bytexis Logo"
                   className="w-8 h-8 rounded-lg"
                 />
@@ -170,7 +174,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <li key={link.href}>
                     <Link 
                       href={link.href} 
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      className={cn(
+                        "text-sm transition-colors",
+                        location === link.href
+                          ? "text-foreground font-semibold"
+                          : "text-muted-foreground hover:text-foreground"
+                      )}
                     >
                       {link.label}
                     </Link>
@@ -216,6 +225,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     +91 91061 17060
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="tel:+916356165015"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    +91 63561 65015
+                  </a>
+                </li>
               </ul>
               {/* Social Icons */}
               <div className="flex items-center gap-3 mt-4">
@@ -229,7 +246,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <Instagram className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://linkedin.com/company/bytexis"
+                  href="https://linkedin.com/in/bytexis-tech"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-colors"
