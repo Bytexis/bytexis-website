@@ -166,9 +166,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-2.5">
                 {[
                   { href: "/", label: "Home" },
-                  { href: "/about", label: "About" },
                   { href: "/work", label: "Work" },
                   { href: "/process", label: "Process" },
+                  { href: "/about", label: "About" },
                   { href: "/contact", label: "Contact" },
                 ].map((link) => (
                   <li key={link.href}>
