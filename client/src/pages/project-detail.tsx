@@ -2,21 +2,21 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useRoute } from "wouter";
 import { getProject } from "@/data/projects";
-import { ArrowLeft, CheckCircle } from "lucide-react";
+import { ArrowLeft, CheckCircle, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut", delay: i * 0.1 },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 },
   }),
 };
 
 const stagger = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
 };
 
 export default function ProjectDetail() {
@@ -52,10 +52,14 @@ export default function ProjectDetail() {
 
   if (!project) {
     return (
-      <div className="min-h-screen pt-24 pb-24 max-w-4xl mx-auto px-4 text-center">
-        <h1 className="text-4xl font-display font-bold">Project not found</h1>
+      <div className="min-h-screen pt-32 pb-24 max-w-4xl mx-auto px-4 text-center">
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted mb-8">
+          <Briefcase className="w-10 h-10 text-muted-foreground" />
+        </div>
+        <h1 className="text-4xl font-display font-bold mb-4">Project not found</h1>
+        <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist or has been removed.</p>
         <Link href="/work">
-          <Button className="mt-8 gap-2">
+          <Button className="gap-2">
             <ArrowLeft className="w-4 h-4" /> Back to Work
           </Button>
         </Link>
@@ -81,28 +85,28 @@ export default function ProjectDetail() {
       </div>
 
       {/* Hero header */}
-      <header className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
+      <header className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         {/* Meta */}
-        <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 mb-6">
-          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+        <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2 mb-6">
+          <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
             {project.industry}
           </span>
-          <span className="text-border">·</span>
+          <span className="text-muted-foreground/40">·</span>
           {project.services.slice(0, 2).map((s) => (
             <span
               key={s}
-              className="px-2.5 py-0.5 rounded-full border border-border text-xs text-muted-foreground"
+              className="text-xs text-muted-foreground"
             >
               {s}
             </span>
           ))}
         </motion.div>
 
-        {/* One H1 with keyword */}
+        {/* Title */}
         <motion.h1
           variants={fadeUp}
           custom={1}
-          className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight leading-[1.08]"
+          className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight"
         >
           {project.title}
         </motion.h1>
@@ -110,17 +114,17 @@ export default function ProjectDetail() {
         <motion.p
           variants={fadeUp}
           custom={2}
-          className="mt-5 text-xl text-muted-foreground font-light leading-relaxed max-w-2xl"
+          className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-2xl"
         >
           {project.description}
         </motion.p>
 
         {/* Tech stack chips */}
-        <motion.div variants={fadeUp} custom={3} className="mt-7 flex flex-wrap gap-2">
+        <motion.div variants={fadeUp} custom={3} className="mt-6 flex flex-wrap gap-2">
           {project.techStack.map((tech) => (
             <span
               key={tech}
-              className="px-3 py-1.5 rounded-lg bg-secondary text-secondary-foreground text-sm font-medium"
+              className="px-2.5 py-1 rounded bg-secondary text-sm"
             >
               {tech}
             </span>
@@ -131,12 +135,12 @@ export default function ProjectDetail() {
         <motion.div
           variants={fadeUp}
           custom={4}
-          className="mt-16 aspect-video w-full overflow-hidden rounded-[2.5rem] border border-border/50 bg-muted shadow-2xl"
+          className="mt-12 aspect-video w-full overflow-hidden rounded-xl border border-border bg-muted"
         >
           <img
             src={project.imageUrl}
             alt={project.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500"
           />
         </motion.div>
       </header>

@@ -1,116 +1,228 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { ArrowRight, Code2, Zap, Users, Target, Heart, Lightbulb } from "lucide-react";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 },
+  }),
+};
+
+const stagger = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+
+const values = [
+  {
+    icon: Code2,
+    title: "Craftsmanship",
+    desc: "We write code that lasts. Clean architecture, readable patterns, and scalable systems — not shortcuts that create debt.",
+  },
+  {
+    icon: Zap,
+    title: "Velocity",
+    desc: "Modern tools and structured workflows help us move fast without breaking things. Speed should be sustainable.",
+  },
+  {
+    icon: Users,
+    title: "Partnership",
+    desc: "We're not vendors, we're collaborators. Your success is our success. We stay accountable throughout the journey.",
+  },
+  {
+    icon: Target,
+    title: "Focus",
+    desc: "We take on fewer projects to do them better. Quality over quantity, always. Every client gets our full attention.",
+  },
+  {
+    icon: Heart,
+    title: "Honesty",
+    desc: "We'll tell you what you need to hear, not what you want to hear. Transparent communication builds trust.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Curiosity",
+    desc: "Technology evolves fast. We stay curious, keep learning, and bring fresh perspectives to every problem.",
+  },
+];
 
 export default function About() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-24 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl"
-        >
-          <h1 className="text-4xl md:text-6xl font-display font-extrabold tracking-tight leading-tight">
-            About Bytexis – <span className="text-gradient">Software Development Studio in India</span>
-          </h1>
-          <p className="mt-8 text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Bytexis is a growing software development studio focused on building scalable web applications and custom software solutions. Founded with an engineering-first mindset, we work with startups and small businesses looking for reliable technical execution and long-term partnership.
-          </p>
-        </motion.div>
+      <section className="pt-28 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+            className="max-w-3xl"
+          >
+            <motion.p
+              variants={fadeUp}
+              className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-4"
+            >
+              About Us
+            </motion.p>
+            <motion.h1
+              variants={fadeUp}
+              className="text-4xl sm:text-5xl font-display font-extrabold tracking-tight mb-6"
+            >
+              A software studio built on quality and trust
+            </motion.h1>
+            <motion.p
+              variants={fadeUp}
+              className="text-lg text-muted-foreground leading-relaxed"
+            >
+              Bytexis is a growing software development studio focused on building 
+              scalable web applications and custom software solutions. Founded with 
+              an engineering-first mindset, we work with startups and small businesses 
+              looking for reliable technical execution and long-term partnership.
+            </motion.p>
+          </motion.div>
+        </div>
       </section>
 
-      {/* Main Content / Story Section */}
-      <section className="py-20 bg-card border-y border-border/50">
+      {/* Story Section */}
+      <section className="py-20 border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="md:col-span-7 space-y-8"
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
             >
-              <h2 className="text-3xl font-display font-bold">Why We Started</h2>
-              <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  Bytexis was started with a simple goal — to build software the right way. After working on multiple independent projects and collaborating with early-stage teams, we noticed a common issue: rushed development, messy codebases, and a lack of long-term technical thinking.
+              <div>
+                <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-4">
+                  Our Story
                 </p>
-                <p>
-                  We built Bytexis to focus on clean architecture, maintainable systems, and thoughtful execution — even at the earliest stages of a product. We believe that quality engineering shouldn't be reserved for enterprise giants; it should be the foundation of every startup.
-                </p>
+                <h2 className="text-2xl md:text-3xl font-display font-bold mb-6">
+                  Why we started Bytexis
+                </h2>
               </div>
-
-              {/* Where we are now - Building trust through honesty */}
-              <div className="pt-8 space-y-4">
-                <h3 className="text-xl font-display font-bold">Where We Are Now</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Bytexis is in its early growth stage. We are actively building our portfolio, refining our development systems, and partnering with founders who value technical clarity and quality execution. Based in Rajkot, Gujarat, we are building a world-class engineering culture right here in India.
+              
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Bytexis was born from a simple frustration — too much software is 
+                  built poorly. Rushed timelines, messy codebases, and a lack of 
+                  long-term thinking leave businesses with products that break, 
+                  don't scale, and cost more to fix than they did to build.
+                </p>
+                <p>
+                  After working on multiple independent projects and collaborating 
+                  with early-stage teams, we saw the same pattern repeat. We started 
+                  Bytexis to do it differently — to bring clean architecture, 
+                  maintainable systems, and thoughtful execution to every project.
                 </p>
               </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="md:col-span-1"
-            />
-
-            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="md:col-span-4 p-8 rounded-3xl bg-background border border-border/50 shadow-sm"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-6"
             >
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-6 text-center">Location & Contact</h3>
-              <div className="space-y-4 text-center">
-                <p className="text-lg font-medium">Rajkot, Gujarat, India</p>
-                <p className="text-muted-foreground">Serving clients globally from our base in Gujarat.</p>
-                <div className="pt-4">
-                  <Link href="/contact">
-                    <Button className="w-full">Get in Touch</Button>
-                  </Link>
-                </div>
+              <div className="p-6 rounded-xl bg-card border border-border">
+                <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-3">
+                  Where We Are Now
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Bytexis is in its early growth stage. We are actively building our 
+                  portfolio and partnering with founders who value technical clarity.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-xl bg-secondary border border-border">
+                <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-3">
+                  Location
+                </p>
+                <p className="font-display font-bold mb-1">Rajkot, Gujarat, India</p>
+                <p className="text-sm text-muted-foreground">
+                  Serving clients globally.
+                </p>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Core Values Section */}
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-display font-bold">Our Engineering Values</h2>
+      {/* Values Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={stagger}
+          >
+            <div className="max-w-2xl mb-12">
+              <motion.p
+                variants={fadeUp}
+                className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-4"
+              >
+                Our Values
+              </motion.p>
+              <motion.h2
+                variants={fadeUp}
+                className="text-2xl md:text-3xl font-display font-bold mb-4"
+              >
+                What we believe in
+              </motion.h2>
+              <motion.p
+                variants={fadeUp}
+                className="text-muted-foreground"
+              >
+                These principles guide how we work and how we treat our clients.
+              </motion.p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {values.map((value, i) => {
+                const Icon = value.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    variants={fadeUp}
+                    custom={i}
+                    className="p-6 rounded-xl border border-border"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center mb-4">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-lg font-display font-bold mb-2">{value.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{value.desc}</p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              title: "Craftsmanship",
-              desc: "We prioritize clean architecture, readable code, and scalable systems over shortcuts. Quality engineering compounds over time and reduces technical debt."
-            },
-            {
-              title: "Velocity",
-              desc: "We use modern tools and structured workflows to move fast — without creating technical debt that slows future growth. Speed should be sustainable."
-            },
-            {
-              title: "Partnership",
-              desc: "We collaborate closely with founders, communicate transparently, and stay accountable throughout the product lifecycle. We are technical partners, not just contractors."
-            }
-          ].map((value, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="p-8 rounded-2xl bg-card border border-border/50 hover:border-foreground/10 transition-colors shadow-sm"
-            >
-              <h3 className="text-2xl font-bold font-display mb-4">{value.title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm md:text-base">{value.desc}</p>
-            </motion.div>
-          ))}
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 border-t border-border">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-display font-bold mb-4">
+            Want to work with us?
+          </h2>
+          <p className="text-muted-foreground mb-6">
+            We're always looking to partner with ambitious founders and teams 
+            who care about building quality software.
+          </p>
+          <Link href="/contact">
+            <Button className="gap-2">
+              Get in Touch
+              <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Link>
         </div>
       </section>
     </div>

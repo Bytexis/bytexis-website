@@ -9,292 +9,227 @@ import {
     TestTube,
     Rocket,
     ArrowRight,
-    CheckCircle,
+    GitBranch,
+    Shield,
+    Users,
+    Zap,
+    HeartHandshake,
 } from "lucide-react";
 
 const steps = [
     {
         number: "01",
         icon: MessageSquare,
-        title: "Discovery & Requirement Analysis",
-        description:
-            "We discuss your goals, target users, and technical requirements to define scope and feasibility. Our focus is on understanding the core problem before proposing a technical solution.",
-        deliverables: [
-            "Requirement summary document",
-            "Initial architecture direction",
-            "Rough timeline and milestone estimate",
-        ],
+        title: "Discovery",
+        description: "We start by understanding your goals, target users, and technical requirements. This phase defines scope and feasibility before any code is written.",
     },
     {
         number: "02",
         icon: Search,
-        title: "Planning & Architecture",
-        description:
-            "We define the system architecture, database design, and technology stack before writing production code. We prioritize scalability, security, and long-term maintainability from the start.",
-        deliverables: [
-            "System architecture diagram",
-            "Database schema design",
-            "Tech stack & infrastructure plan",
-        ],
+        title: "Planning",
+        description: "We define the system architecture, database design, and technology stack. Scalability, security, and maintainability are built in from the start.",
     },
     {
         number: "03",
         icon: PenTool,
-        title: "UI/UX Design",
-        description:
-            "From low-fidelity wireframes to interactive high-fidelity prototypes. Every design decision is backed by user flows and brand requirements, ensuring a functional and intuitive interface.",
-        deliverables: [
-            "User flow diagrams",
-            "High-fidelity interactive prototype",
-            "UI design system & style guide",
-        ],
+        title: "Design",
+        description: "From wireframes to interactive prototypes. Every design decision is grounded in user flows and your brand requirements.",
     },
     {
         number: "04",
         icon: Code2,
         title: "Development",
-        description:
-            "Agile iterations with weekly updates. We follow clean code practices, version control (Git), and regular code reviews to ensure the codebase remains robust and easy to scale.",
-        deliverables: [
-            "Production-ready codebase",
-            "Weekly sprint demos",
-            "Fully version-controlled development",
-        ],
+        description: "Agile iterations with weekly updates. We follow clean code practices, version control, and regular code reviews.",
     },
     {
         number: "05",
         icon: TestTube,
-        title: "Testing & Optimization",
-        description:
-            "Rigorous testing including unit tests, integration tests, and performance benchmarks. We fix bugs and optimize for speed and security before moving to production.",
-        deliverables: [
-            "Comprehensive test report",
-            "Performance optimization audit",
-            "Security & vulnerability check",
-        ],
+        title: "Testing",
+        description: "Rigorous testing including unit tests, integration tests, and performance benchmarks. We fix bugs and optimize before production.",
     },
     {
         number: "06",
         icon: Rocket,
-        title: "Deployment & Support",
-        description:
-            "A controlled deployment process with monitoring and logging setup. We provide post-launch support to ensure a smooth transition and reliable system performance.",
-        deliverables: [
-            "Production environment setup",
-            "Monitoring & error logging",
-            "Post-launch technical support",
-        ],
+        title: "Launch",
+        description: "Controlled deployment with monitoring and logging. We provide post-launch support to ensure smooth operation.",
     },
 ];
 
-const fadeInUp = {
-    hidden: { opacity: 0, y: 16 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+const foundations = [
+    { icon: GitBranch, title: "Version Control", desc: "Git-based workflow with transparent development history." },
+    { icon: Zap, title: "Scalable Architecture", desc: "Built to handle growth without costly rewrites." },
+    { icon: Code2, title: "Clean Code", desc: "DRY/SOLID principles for long-term maintainability." },
+    { icon: Users, title: "Transparent Process", desc: "Weekly updates and shared project visibility." },
+    { icon: Shield, title: "Security First", desc: "Protection for your brand, users, and data." },
+    { icon: HeartHandshake, title: "Long-term Partnership", desc: "Ongoing support, maintenance, and growth." },
+];
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i = 0) => ({
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.06 },
+    }),
 };
 
 const stagger = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+    visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
 };
 
 export default function Process() {
     return (
         <div className="min-h-screen">
             {/* Hero */}
-            <section className="relative pt-20 pb-16 overflow-hidden">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <section className="pt-28 pb-16">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
                         animate="visible"
                         variants={stagger}
-                        className="max-w-4xl"
+                        className="max-w-3xl"
                     >
-                        <motion.div
-                            variants={fadeInUp}
-                            className="inline-block mb-6 px-4 py-1.5 rounded-full bg-secondary text-secondary-foreground text-xs font-semibold uppercase tracking-wider border border-border"
+                        <motion.p
+                            variants={fadeUp}
+                            className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-4"
                         >
-                            Engineering Methodology
-                        </motion.div>
+                            How We Work
+                        </motion.p>
                         <motion.h1
-                            variants={fadeInUp}
-                            className="text-4xl md:text-6xl font-display font-extrabold tracking-tight leading-[1.1]"
+                            variants={fadeUp}
+                            className="text-4xl sm:text-5xl font-display font-extrabold tracking-tight mb-6"
                         >
-                            Our Software Development Process
+                            A clear process for reliable results
                         </motion.h1>
                         <motion.p
-                            variants={fadeInUp}
-                            className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl"
+                            variants={fadeUp}
+                            className="text-lg text-muted-foreground leading-relaxed"
                         >
-                            At Bytexis, we follow a structured software development process to ensure clarity,
-                            scalability, and predictable delivery. From discovery to deployment, every step is
-                            designed to reduce risk and build reliable digital products.
+                            No black boxes. From discovery to deployment, every step is designed 
+                            to reduce risk and build reliable software you can depend on.
                         </motion.p>
                     </motion.div>
                 </div>
             </section>
 
-            {/* Steps */}
+            {/* Steps - Timeline Style */}
             <section className="pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="relative">
-                    {/* Vertical connector line animation */}
-                    <motion.div
-                        initial={{ scaleY: 0 }}
-                        whileInView={{ scaleY: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, ease: "easeInOut" }}
-                        className="hidden md:block absolute left-[2.45rem] top-8 bottom-8 w-px bg-border origin-top"
-                    />
-
-                    <motion.div
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
-                        variants={stagger}
-                        className="space-y-10"
-                    >
-                        {steps.map((step, i) => {
-                            const Icon = step.icon;
-                            return (
-                                <motion.div
-                                    key={step.number}
-                                    variants={fadeInUp}
-                                    className="relative flex flex-col md:flex-row gap-6 md:gap-12 group"
-                                >
-                                    {/* Icon bubble */}
-                                    <div className="flex-shrink-0 flex items-start gap-4 md:gap-0">
-                                        <div className="relative z-10 w-20 h-20 rounded-xl bg-background border border-border group-hover:border-foreground/20 group-hover:bg-secondary/50 transition-all duration-300 flex flex-col items-center justify-center shadow-sm">
-                                            <Icon className="w-5 h-5 text-foreground mb-1" />
-                                            <span className="text-[10px] font-bold tracking-wider text-muted-foreground">
-                                                {step.number}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    {/* Content card */}
-                                    <div className="flex-1 p-8 rounded-2xl bg-card border border-border/60 group-hover:border-foreground/10 group-hover:bg-accent/5 transition-all duration-300">
-                                        <h2 className="text-2xl font-display font-bold mb-4">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={stagger}
+                    className="max-w-3xl"
+                >
+                    {steps.map((step, i) => {
+                        const Icon = step.icon;
+                        return (
+                            <motion.div
+                                key={step.number}
+                                variants={fadeUp}
+                                custom={i}
+                                className="relative pl-16 pb-12 last:pb-0"
+                            >
+                                {/* Timeline line */}
+                                {i !== steps.length - 1 && (
+                                    <div className="absolute left-[18px] top-12 w-px h-[calc(100%-24px)] bg-border" />
+                                )}
+                                
+                                {/* Number circle */}
+                                <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center text-sm font-bold">
+                                    {step.number}
+                                </div>
+                                
+                                {/* Content */}
+                                <div>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <Icon className="w-4 h-4 text-muted-foreground" />
+                                        <h2 className="text-xl font-display font-bold">
                                             {step.title}
                                         </h2>
-                                        <p className="text-muted-foreground leading-relaxed text-[17px] mb-8">
-                                            {step.description}
-                                        </p>
-
-                                        <div>
-                                            <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/80 mb-4">
-                                                Deliverables
-                                            </h4>
-                                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
-                                                {step.deliverables.map((d) => (
-                                                    <li key={d} className="flex items-start gap-2.5 text-sm">
-                                                        <CheckCircle className="w-4 h-4 text-foreground/70 mt-0.5 flex-shrink-0" />
-                                                        <span className="text-foreground/80">{d}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
                                     </div>
-                                </motion.div>
-                            );
-                        })}
-                    </motion.div>
-                </div>
+                                    <p className="text-muted-foreground leading-relaxed">
+                                        {step.description}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        );
+                    })}
+                </motion.div>
             </section>
 
-            {/* Foundations Section (Replacing fake metrics) */}
-            <section className="py-24 bg-card border-y border-border/50">
+            {/* Foundations Section - Larger */}
+            <section className="py-24 bg-secondary/50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={stagger}
-                        className="text-center mb-16"
                     >
-                        <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-display font-bold">
-                            Built on Strong Foundations
-                        </motion.h2>
-                        <motion.p variants={fadeInUp} className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-                            We don't just build features; we build systems. Our engineering approach is rooted
-                            in industry-standard practices that ensure your software lasts.
-                        </motion.p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {[
-                            { title: "Version Control (Git)", desc: "Transparent, audible, and collaborative development flow." },
-                            { title: "Scalable Architecture", desc: "Software designed to handle growth without total rewrites." },
-                            { title: "Clean & Maintainable Code", desc: "Adherence to DRY/SOLID principles for easier long-term support." },
-                            { title: "Transparent Communication", desc: "Weekly updates and shared project visibility from day one." },
-                            { title: "Security First Mindset", desc: "Built-in protection for your brand and your users' data." },
-                            { title: "Long-term Partnership", desc: "Ongoing engineering support for maintenance and scaling." },
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                variants={fadeInUp}
-                                className="p-6 rounded-xl bg-background border border-border/50"
+                        <div className="text-center mb-16">
+                            <motion.p
+                                variants={fadeUp}
+                                className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-4"
                             >
-                                <h3 className="font-bold mb-2">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
+                                Engineering Principles
+                            </motion.p>
+                            <motion.h2
+                                variants={fadeUp}
+                                className="text-3xl md:text-4xl font-display font-bold mb-4"
+                            >
+                                Built on strong foundations
+                            </motion.h2>
+                            <motion.p
+                                variants={fadeUp}
+                                className="text-lg text-muted-foreground max-w-2xl mx-auto"
+                            >
+                                We don't just build features; we build systems that last.
+                            </motion.p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
+                            {foundations.map((item, i) => {
+                                const Icon = item.icon;
+                                return (
+                                    <motion.div
+                                        key={i}
+                                        variants={fadeUp}
+                                        custom={i}
+                                        className="flex gap-4"
+                                    >
+                                        <div className="w-12 h-12 rounded-xl bg-background flex items-center justify-center flex-shrink-0">
+                                            <Icon className="w-5 h-5" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-lg font-semibold mb-1">{item.title}</h3>
+                                            <p className="text-muted-foreground">{item.desc}</p>
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
+                        </div>
+                    </motion.div>
                 </div>
             </section>
 
-            {/* SEO Section */}
-            <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center"
-                >
-                    <h2 className="text-2xl md:text-3xl font-display font-bold mb-6">
-                        Why Our Development Process Matters
+            {/* Simple CTA */}
+            <section className="py-20">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 className="text-2xl font-display font-bold mb-4">
+                        Ready to start your project?
                     </h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                        A structured development process reduces technical debt, improves scalability,
-                        and ensures predictable delivery timelines. Bytexis follows best practices
-                        in modern web and software development to build systems that are reliable
-                        and maintainable. Our engineering-focused startup studio builds scalable
-                        software for early-stage products and long-term stability.
+                    <p className="text-muted-foreground mb-8">
+                        Let's discuss your requirements and plan your development journey.
                     </p>
-                </motion.div>
-            </section>
-
-            {/* CTA */}
-            <section className="py-24 max-w-4xl mx-auto px-4 text-center">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={stagger}
-                >
-                    <motion.h2
-                        variants={fadeInUp}
-                        className="text-3xl md:text-4xl font-display font-bold"
-                    >
-                        Let's Plan Your Software Project
-                    </motion.h2>
-                    <motion.p
-                        variants={fadeInUp}
-                        className="mt-6 text-lg text-muted-foreground"
-                    >
-                        Ready to build a reliable digital product? Let's discuss your requirements
-                        today and plan your development journey with a structured approach.
-                    </motion.p>
-                    <motion.div
-                        variants={fadeInUp}
-                        className="mt-10"
-                    >
-                        <Link href="/contact">
-                            <Button size="lg" className="gap-2 group">
-                                Start Your Project With Clarity
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </Button>
-                        </Link>
-                    </motion.div>
-                </motion.div>
+                    <Link href="/contact">
+                        <Button size="lg" className="gap-2">
+                            Get in Touch
+                            <ArrowRight className="w-4 h-4" />
+                        </Button>
+                    </Link>
+                </div>
             </section>
         </div>
     );

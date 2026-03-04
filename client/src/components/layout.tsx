@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useTheme } from "@/hooks/use-theme";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, Instagram, Phone, Github, Linkedin } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     if (theme === "system") {
@@ -19,9 +20,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
       mediaQuery.addEventListener("change", updateTheme);
       return () => mediaQuery.removeEventListener("change", updateTheme);
     }
-
     setResolvedTheme(theme);
   }, [theme]);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleTheme = () => setTheme(resolvedTheme === "dark" ? "light" : "dark");
 
@@ -34,43 +40,47 @@ export function Layout({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-300">
-      <header className="fixed top-0 left-0 right-0 z-50 glass-panel border-b-0 border-t-0 border-x-0 border-border/40">
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
+      {/* Header */}
+      <header 
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled 
+            ? "glass-panel shadow-sm" 
+            : "bg-transparent"
+        )}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
             <img
               src={`${import.meta.env.BASE_URL}assets/logo.jpeg`}
               alt="Bytexis Logo"
-              className="w-10 h-10 rounded-lg shadow-sm group-hover:scale-105 transition-transform duration-300"
+              className="w-10 h-10 rounded-xl shadow-sm group-hover:shadow-md transition-all duration-300"
             />
             <span className="font-display font-bold text-xl tracking-tight">Bytexis</span>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary relative py-2",
-                  location === link.href ? "text-primary" : "text-muted-foreground"
+                  "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                  location === link.href 
+                    ? "text-foreground bg-secondary" 
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
                 )}
               >
                 {link.label}
-                {location === link.href && (
-                  <motion.div
-                    layoutId="activeNavIndicator"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
-                    initial={false}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
               </Link>
             ))}
 
+            <div className="w-px h-6 bg-border mx-2" />
+
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-full bg-secondary/50 hover:bg-secondary text-secondary-foreground transition-colors"
+              className="p-2.5 rounded-lg bg-secondary/50 hover:bg-secondary text-foreground transition-all duration-200"
               aria-label="Toggle theme"
             >
               {resolvedTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
@@ -78,8 +88,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </nav>
 
           <button
-            className="md:hidden p-2 text-foreground"
+            className="md:hidden p-2 text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -102,7 +113,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
                     "text-2xl font-display font-semibold py-4 border-b border-border/50",
-                    location === link.href ? "text-primary" : "text-muted-foreground"
+                    location === link.href ? "text-foreground" : "text-muted-foreground"
                   )}
                 >
                   {link.label}
@@ -126,121 +137,123 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <footer className="border-t border-border/50 bg-card py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 pb-12 border-b border-border/50">
-            {/* Brand Section */}
-            <div className="space-y-4">
-              <h3 className="text-2xl font-display font-bold">BYTEXIS.</h3>
+      <footer className="border-t border-border">
+        {/* Main Footer */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+            {/* Brand */}
+            <div className="lg:col-span-1 space-y-4">
+              <Link href="/" className="flex items-center gap-2.5">
+                <img
+                  src={`${import.meta.env.BASE_URL}assets/logo.jpeg`}
+                  alt="Bytexis Logo"
+                  className="w-8 h-8 rounded-lg"
+                />
+                <span className="font-display font-bold text-lg">Bytexis</span>
+              </Link>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Software Development Company in Rajkot, India
+                Software development studio helping startups build scalable web applications.
               </p>
             </div>
 
-            {/* Navigation */}
-            <div className="space-y-4">
-              <h4 className="font-display font-semibold text-foreground">Navigation</h4>
-              <ul className="space-y-3">
-                <li>
-                  <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/work" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Projects
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    Contact
-                  </Link>
-                </li>
+            {/* Quick Links */}
+            <div className="lg:col-span-1">
+              <h4 className="font-semibold text-sm mb-4">Links</h4>
+              <ul className="space-y-2.5">
+                {[
+                  { href: "/", label: "Home" },
+                  { href: "/about", label: "About" },
+                  { href: "/work", label: "Work" },
+                  { href: "/process", label: "Process" },
+                  { href: "/contact", label: "Contact" },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <Link 
+                      href={link.href} 
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Connect */}
-            <div className="space-y-4">
-              <h4 className="font-display font-semibold text-foreground">Connect</h4>
-              <ul className="space-y-3">
-                <li>
-                  <a
-                    href="https://github.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
-                  >
-                    <span>GitHub</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
-                  >
-                    <span>LinkedIn</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
-                  >
-                    <span>Instagram</span>
-                  </a>
-                </li>
+            {/* Services */}
+            <div className="lg:col-span-1">
+              <h4 className="font-semibold text-sm mb-4">Services</h4>
+              <ul className="space-y-2.5">
+                {[
+                  "Web Applications",
+                  "Custom Software",
+                  "SaaS Products",
+                  "Mobile Apps",
+                ].map((service) => (
+                  <li key={service}>
+                    <span className="text-sm text-muted-foreground">{service}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Contact */}
-            <div className="space-y-4">
-              <h4 className="font-display font-semibold text-foreground">Contact</h4>
-              <ul className="space-y-3">
+            <div className="lg:col-span-1">
+              <h4 className="font-semibold text-sm mb-4">Contact</h4>
+              <ul className="space-y-2.5">
                 <li>
                   <a
-                    href="mailto:hello@bytexis.com"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
+                    href="mailto:contact@bytexis.in"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    <span>Email</span>
+                    contact@bytexis.in
                   </a>
                 </li>
                 <li>
                   <a
-                    href="tel:+919876543210"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
+                    href="tel:+919106117060"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    <span>Call</span>
+                    +91 91061 17060
                   </a>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
-                  >
-                    <span>Get in Touch</span>
-                  </Link>
-                </li>
-                <li>
-                  <span className="text-sm text-muted-foreground flex items-center gap-2">
-                    Rajkot, Gujarat, India
-                  </span>
                 </li>
               </ul>
+              {/* Social Icons */}
+              <div className="flex items-center gap-3 mt-4">
+                <a
+                  href="https://instagram.com/bytexis.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-colors"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://linkedin.com/company/bytexis"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://github.com/Bytexis"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Copyright */}
-          <div className="text-center">
+        {/* Bottom bar */}
+        <div className="border-t border-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-center">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Bytexis. All rights reserved.
             </p>
