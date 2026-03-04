@@ -36,7 +36,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />
-          <Router base="/bytexis-website">
+          <Router base="/">
             <AppRoutes />
           </Router>
         </TooltipProvider>
