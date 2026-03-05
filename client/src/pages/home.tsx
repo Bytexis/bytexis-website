@@ -275,7 +275,7 @@ export default function Home() {
                   variants={fadeUp}
                   className="text-lg text-muted-foreground leading-relaxed mb-10"
                 >
-                  We're not a giant agency. We're a focused team that cares about 
+                  We're not just an agency. We're a focused team that cares about 
                   code quality, client relationships, and building software that actually works.
                 </motion.p>
 
