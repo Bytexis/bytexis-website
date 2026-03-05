@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Send, CheckCircle2, Mail, Linkedin, MapPin, Phone, Instagram, Github } from "lucide-react";
 
@@ -55,7 +56,14 @@ export default function Contact() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
+      <Helmet>
+        <title>Contact Us | Get in Touch with Bytexis | Rajkot, Gujarat</title>
+        <meta name="description" content="Contact Bytexis for custom software and web development services. Located in Rajkot, Gujarat. Call +91 91061 17060 or email contact@bytexis.in" />
+        <meta name="keywords" content="contact software company, web development inquiry, custom software consultation, Rajkot software services" />
+      </Helmet>
+      
+      <div className="min-h-screen">
       {/* Hero */}
       <section className="pt-28 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -347,5 +355,6 @@ export default function Contact() {
         </div>
       </div>
     </div>
+    </>
   );
 }

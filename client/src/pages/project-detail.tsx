@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useRoute } from "wouter";
+import { Helmet } from "react-helmet-async";
 import { getProject } from "@/data/projects";
 import { ArrowLeft, CheckCircle, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -68,12 +69,19 @@ export default function ProjectDetail() {
   }
 
   return (
-    <motion.article
-      initial="hidden"
-      animate="visible"
-      variants={stagger}
-      className="pb-32"
-    >
+    <>
+      <Helmet>
+        <title>{project.title} | {project.industry} Project | Bytexis Portfolio</title>
+        <meta name="description" content={`${project.description} Built using ${project.techStack.slice(0, 3).join(', ')}. ${project.results}`} />
+        <meta name="keywords" content={`${project.title}, ${project.industry}, ${project.services.join(', ')}, ${project.techStack.join(', ')}`} />
+      </Helmet>
+      
+      <motion.article
+        initial="hidden"
+        animate="visible"
+        variants={stagger}
+        className="pb-32"
+      >
       {/* Back nav */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6">
         <Link
@@ -139,7 +147,7 @@ export default function ProjectDetail() {
         >
           <img
             src={project.imageUrl}
-            alt={project.title}
+            alt={`${project.title} - ${project.industry} project showcase | ${project.description}`}
             className="w-full h-full object-cover hover:scale-[1.02] transition-transform duration-500"
           />
         </motion.div>
@@ -234,5 +242,6 @@ export default function ProjectDetail() {
         </main>
       </div>
     </motion.article>
+    </>
   );
 }

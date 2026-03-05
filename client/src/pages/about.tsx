@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { Helmet } from "react-helmet-async";
 import { ArrowRight, Code2, Zap, Users, Target, Heart, Lightbulb } from "lucide-react";
 
 const fadeUp = {
@@ -21,7 +22,7 @@ const values = [
   {
     icon: Code2,
     title: "Craftsmanship",
-    desc: "We write code that lasts. Clean architecture, readable patterns, and scalable systems — not shortcuts that create debt.",
+    desc: "We write code that lasts. Clean architecture, readable patterns, and scalable systems not shortcuts that create debt.",
   },
   {
     icon: Zap,
@@ -52,7 +53,14 @@ const values = [
 
 export default function About() {
   return (
-    <div className="min-h-screen">
+    <>
+      <Helmet>
+        <title>About Us | Bytexis</title>
+        <meta name="description" content="Meet the Bytexis team - experienced software engineers building custom web applications and SaaS products for startups and businesses in Rajkot, Gujarat." />
+        <meta name="keywords" content="software development team, web development company Rajkot, tech startup Gujarat, custom software engineers" />
+      </Helmet>
+      
+      <div className="min-h-screen py-24">
       {/* Hero Section */}
       <section className="pt-28 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,7 +118,7 @@ export default function About() {
               
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Bytexis was born from a simple frustration — too much software is 
+                  Bytexis was born from a simple frustration - too much software is 
                   built poorly. Rushed timelines, messy codebases, and a lack of 
                   long-term thinking leave businesses with products that break, 
                   don't scale, and cost more to fix than they did to build.
@@ -118,7 +126,7 @@ export default function About() {
                 <p>
                   After working on multiple independent projects and collaborating 
                   with early-stage teams, we saw the same pattern repeat. We started 
-                  Bytexis to do it differently — to bring clean architecture, 
+                  Bytexis to do it differently to bring clean architecture, 
                   maintainable systems, and thoughtful execution to every project.
                 </p>
               </div>
@@ -233,5 +241,6 @@ export default function About() {
         </motion.div>
       </section>
     </div>
+    </>
   );
 }

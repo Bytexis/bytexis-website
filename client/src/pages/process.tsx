@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet-async";
 import {
     MessageSquare,
     Search,
@@ -80,7 +81,14 @@ const stagger = {
 
 export default function Process() {
     return (
-        <div className="min-h-screen">
+        <>
+          <Helmet>
+            <title>Our Process | Workflow | Bytexis</title>
+            <meta name="description" content="Learn about our structured software development process - from discovery to launch. We build scalable, production-ready systems using modern engineering practices." />
+            <meta name="keywords" content="software development process, agile development, product development workflow, custom software methodology" />
+          </Helmet>
+          
+          <div className="min-h-screen py-24">
             {/* Hero */}
             <section className="pt-28 pb-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -239,5 +247,6 @@ export default function Process() {
                 </motion.div>
             </section>
         </div>
+        </>
     );
 }

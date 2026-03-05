@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { Helmet } from "react-helmet-async";
 import { getProjects } from "@/data/projects";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -48,7 +49,14 @@ export default function Work() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
+      <Helmet>
+        <title>Our Work | Web & Software Development Portfolio | Bytexis</title>
+        <meta name="description" content="Explore our portfolio of custom software projects, web applications, and SaaS platforms. See how Bytexis helps businesses scale with technology." />
+        <meta name="keywords" content="software portfolio, web development projects, SaaS platforms, React applications, custom software examples" />
+      </Helmet>
+      
+      <div className="min-h-screen py-24">
       {/* Header */}
       <section className="pt-28 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,7 +84,7 @@ export default function Work() {
               custom={1}
               className="text-lg text-muted-foreground leading-relaxed"
             >
-              From business websites to complex software systems — explore our 
+              From business websites to complex software systems - explore our 
               portfolio of custom software development, web applications, and 
               digital products built for real businesses.
             </motion.p>
@@ -107,7 +115,7 @@ export default function Work() {
                   <div className="aspect-[16/10] overflow-hidden bg-muted">
                     <img
                       src={project.imageUrl}
-                      alt={project.title}
+                      alt={`${project.title} - ${project.industry} project by Bytexis | ${project.services.join(', ')}`}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
@@ -173,5 +181,6 @@ export default function Work() {
         </div>
       </section>
     </div>
+    </>
   );
 }

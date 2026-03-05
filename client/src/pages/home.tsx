@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet-async";
 import {
   ArrowRight,
   Globe,
@@ -50,7 +51,7 @@ const services = [
   {
     icon: LayoutDashboard,
     title: "SaaS Products",
-    desc: "From idea to live SaaS — we handle architecture, auth, billing, and multi-tenancy. You focus on growth.",
+    desc: "From idea to live SaaS - we handle architecture, auth, billing, and multi-tenancy. You focus on growth.",
   },
   {
     icon: Smartphone,
@@ -102,7 +103,14 @@ export default function Home() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
-    <div className="flex flex-col">
+    <>
+      <Helmet>
+        <title>Bytexis | Web & Software Development Company in Rajkot</title>
+        <meta name="description" content="Custom software development company in Rajkot, Gujarat. We build scalable web applications, SaaS products, and mobile-first platforms for startups and businesses." />
+        <meta name="keywords" content="software development company India, web development Rajkot, custom software solutions, SaaS development, React development, startup tech partner" />
+      </Helmet>
+      
+      <div className="flex flex-col">
 
       {/* ── 1. HERO ─────────────────────────────────────────── */}
       <section ref={heroRef} className="relative min-h-[85vh] flex items-center pt-20">
@@ -211,13 +219,13 @@ export default function Home() {
                 id="services-heading"
                 className="text-4xl md:text-5xl font-display font-bold mb-6"
               >
-                End-to-end software development
+                Software development
               </motion.h2>
               <motion.p
                 variants={fadeUp}
                 className="text-lg text-muted-foreground leading-relaxed"
               >
-                From MVP to enterprise scale — we design, build, and launch digital products 
+                From MVP to enterprise scale - we design, build, and launch digital products 
                 that solve real problems. No buzzwords, just reliable software.
               </motion.p>
             </div>
@@ -370,7 +378,7 @@ export default function Home() {
                       <div className="aspect-[16/9] w-full overflow-hidden bg-muted">
                         <img
                           src={project.imageUrl}
-                          alt={project.title}
+                          alt={`${project.title} - ${project.industry} project by Bytexis | ${project.services.join(', ')}`}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
@@ -434,5 +442,6 @@ export default function Home() {
       </section>
 
     </div>
+    </>
   );
 }

@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/hooks/use-theme";
+import { HelmetProvider } from "react-helmet-async";
 import { Layout } from "@/components/layout";
 
 import NotFound from "@/pages/not-found";
@@ -45,16 +46,18 @@ function AppRoutes() {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="bytexis-theme">
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Router base="/">
-            <AppRoutes />
-          </Router>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider defaultTheme="system" storageKey="bytexis-theme">
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider>
+            <Toaster />
+            <Router base="/">
+              <AppRoutes />
+            </Router>
+          </TooltipProvider>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 
