@@ -32,7 +32,7 @@ export default function Contact() {
     "mainEntity": {
       "@type": "Organization",
       "name": "Bytexis",
-      "email": "contact@bytexis.in",
+      "email": "bytexis.tech@gmail.com",
       "url": "https://bytexis.in",
       "location": {
         "@type": "Place",
@@ -59,7 +59,7 @@ export default function Contact() {
     <>
       <Helmet>
         <title>Contact Us | Get in Touch with Bytexis | Rajkot, Gujarat</title>
-        <meta name="description" content="Contact Bytexis for custom software and web development services. Located in Rajkot, Gujarat. Call +91 91061 17060 or email contact@bytexis.in" />
+        <meta name="description" content="Contact Bytexis for custom software and web development services. Located in Rajkot, Gujarat. Call +91 91061 17060 or email bytexis.tech@gmail.com" />
         <meta name="keywords" content="contact software company, web development inquiry, custom software consultation, Rajkot software services" />
       </Helmet>
       
@@ -119,10 +119,10 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
                     <a 
-                      href="mailto:contact@bytexis.in" 
+                      href="mailto:bytexis.tech@gmail.com" 
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      contact@bytexis.in
+                      bytexis.tech@gmail.com
                     </a>
                   </div>
                 </div>

@@ -211,10 +211,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-2.5">
                 <li>
                   <a
-                    href="mailto:contact@bytexis.in"
+                    href="mailto:bytexis.tech@gmail.com"
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    contact@bytexis.in
+                    bytexis.tech@gmail.com
                   </a>
                 </li>
                 <li>
