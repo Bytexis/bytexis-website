@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { Send, CheckCircle2, Mail, Linkedin, MapPin, Phone, Instagram, Github } from "lucide-react";
+import { Send, CheckCircle2, Mail, Linkedin, MapPin, Phone, Instagram } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -135,17 +135,11 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">Phone</h3>
-                    <a 
-                      href="tel:+919106117060" 
+                    <a
+                      href="tel:+919106117060"
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors block"
                     >
                       +91 91061 17060
-                    </a>
-                    <a 
-                      href="tel:+916356165015" 
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors block"
-                    >
-                      +91 63561 65015
                     </a>
                   </div>
                 </div>
@@ -204,24 +198,6 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="p-5 rounded-xl border border-border flex-1">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
-                    <Github className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold mb-1">GitHub</h3>
-                    <a 
-                      href="https://github.com/Bytexis" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      Bytexis
-                    </a>
-                  </div>
-                </div>
-              </div>
             </div>
           </motion.div>
 
