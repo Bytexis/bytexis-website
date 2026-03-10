@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { useTheme } from "@/hooks/use-theme";
-import { Moon, Sun, Menu, X, Instagram, Phone, Github, Linkedin } from "lucide-react";
+import { Moon, Sun, Menu, X, Instagram, Phone, Github, Linkedin, Youtube, Twitter, Facebook } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -144,7 +144,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <footer className="border-t border-border">
         {/* Main Footer */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
             {/* Brand */}
             <div className="lg:col-span-1 space-y-4">
               <Link href="/" className="flex items-center gap-2.5">
@@ -226,36 +226,70 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   </a>
                 </li>
               </ul>
-              {/* Social Icons */}
-              <div className="flex items-center gap-3 mt-4">
-                <a
-                  href="https://instagram.com/bytexis.tech"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-4 h-4" />
-                </a>
-                <a
-                  href="https://linkedin.com/in/bytexis-tech"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-colors"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-4 h-4" />
-                </a>
-                <a
-                  href="https://github.com/Bytexis"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-secondary/80 transition-colors"
-                  aria-label="GitHub"
-                >
-                  <Github className="w-4 h-4" />
-                </a>
-              </div>
+            </div>
+
+            {/* Connect */}
+            <div className="lg:col-span-1">
+              <h4 className="font-semibold text-sm mb-4">Connect</h4>
+              <ul className="space-y-2.5">
+                <li>
+                  <a
+                    href="https://instagram.com/bytexis.tech"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Instagram className="w-4 h-4" />
+                    <span>Instagram</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://linkedin.com/in/bytexis-tech"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                    <span>LinkedIn</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="http://youtube.com/@BytexisTech"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Youtube className="w-4 h-4" />
+                    <span>YouTube</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://x.com/BytexisTech"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    <span>Twitter</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.facebook.com/share/1BzWh1G19U/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <Facebook className="w-4 h-4" />
+                    <span>Facebook</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

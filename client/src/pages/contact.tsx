@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { Send, CheckCircle2, Mail, Linkedin, MapPin, Phone, Instagram } from "lucide-react";
+import { Send, CheckCircle2, Mail, MapPin, Phone, Instagram, Linkedin } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -99,18 +99,19 @@ export default function Contact() {
 
       {/* Main content */}
       <div className="pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-          {/* Left Column: Info */}
+          {/* Left Column: Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.4 }}
-            className="lg:col-span-5 flex flex-col"
+            className="lg:col-span-5 lg:pt-8"
           >
-            <div className="space-y-4 flex-1 flex flex-col">
-              {/* Contact cards */}
+            <h2 className="text-2xl font-display font-bold mb-8">Let's Connect</h2>
+            <div className="space-y-4">
+              {/* Email */}
               <div className="p-5 rounded-xl border border-border">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
@@ -128,6 +129,7 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* Phone */}
               <div className="p-5 rounded-xl border border-border">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
@@ -145,6 +147,7 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* Location */}
               <div className="p-5 rounded-xl border border-border">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
@@ -159,7 +162,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Social Links */}
+              {/* Instagram */}
               <div className="p-5 rounded-xl border border-border">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
@@ -179,6 +182,7 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* LinkedIn */}
               <div className="p-5 rounded-xl border border-border">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
@@ -197,7 +201,6 @@ export default function Contact() {
                   </div>
                 </div>
               </div>
-
             </div>
           </motion.div>
 
